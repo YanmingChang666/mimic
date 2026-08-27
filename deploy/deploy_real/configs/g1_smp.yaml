@@ -1,0 +1,8 @@
+# SMP G1 真机部署硬件参数（策略参数走 policy.onnx 元数据，不在此处）。
+control_dt: 0.02
+
+msg_type: "hg"       # G1 用 hg
+imu_type: "pelvis"   # SMP base 观测在 pelvis(IMU) 系
+
+lowcmd_topic: "rt/lowcmd"
+lowstate_topic: "rt/lowstate"

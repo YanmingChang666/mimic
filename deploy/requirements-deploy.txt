@@ -1,0 +1,21 @@
+# SMP 部署依赖（deploy/deploy_mujoco 与 deploy/deploy_real）。
+# 与训练环境(uv)相互独立：部署端只需下面这些，不需要 mjlab/rsl_rl。
+#   pip install -r deploy/requirements-deploy.txt
+
+# ---- 通用 ----
+numpy>=1.20
+onnx
+onnxruntime            # 跑导出的 policy.onnx（actor+归一化已折进图内）
+pyyaml
+
+# ---- sim2sim（deploy_mujoco.py）----
+mujoco
+pygame                 # PC 手柄后端（默认）
+# evdev                # 可选更可靠后端：pip install evdev（Linux，需加入 input 组）
+
+# ---- sim2real（deploy_real.py）----
+# unitree_sdk2py：从源码安装
+#   git clone https://github.com/unitreerobotics/unitree_sdk2_python.git
+#   cd unitree_sdk2_python && pip install -e .
+
+# 注意：导出 onnx（scripts/export_onnx.py）需在训练环境(装了 mjlab)里跑，用 `uv run`。
